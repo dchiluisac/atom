@@ -47,6 +47,7 @@ const AutoUpdateManager = require('./auto-update-manager');
 const StartupTime = require('./startup-time');
 const getReleaseChannel = require('./get-release-channel');
 const React = require('react');
+const { render, unmountComponentAtNode } = require('react-dom')
 
 const stat = util.promisify(fs.stat);
 
@@ -1030,7 +1031,6 @@ class AtomEnvironment {
       );
       await this.openInitialEmptyEditorIfNecessary();
       
-      const { render, unmountComponentAtNode } = require('react-dom');
       const AppContainer = require('./components/app').default;
       const root = document.createElement('div');
       root.classList.add('root');

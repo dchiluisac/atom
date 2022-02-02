@@ -119,6 +119,12 @@ module.exports = function(packagedAppPath) {
           path.join('node_modules', 'temp', 'lib', 'temp.js')
         ) ||
         requiredModuleRelativePath.endsWith(
+          path.join('node_modules', 'react', 'index.js')
+        ) ||
+        requiredModuleRelativePath.endsWith(
+          path.join('node_modules', 'react-dom', 'index.js')
+        ) ||
+        requiredModuleRelativePath.endsWith(
           path.join('node_modules', 'parse5', 'lib', 'index.js')
         ) ||
         requiredModuleRelativePath === path.join('..', 'exports', 'atom.js') ||

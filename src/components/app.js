@@ -1,5 +1,10 @@
-import * as React from 'react'
+/** @babel */
+import React from 'react';
 
-export default function AppContainer () {
-  return <div>Inkdrop on Atom!</div>
+const App = () => {
+  return (
+    <div>Hello World!!</div>
+  );
 }
+
+export default App;
