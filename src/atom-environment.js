@@ -46,6 +46,7 @@ const TextEditorRegistry = require('./text-editor-registry');
 const AutoUpdateManager = require('./auto-update-manager');
 const StartupTime = require('./startup-time');
 const getReleaseChannel = require('./get-release-channel');
+const React = require('react');
 
 const stat = util.promisify(fs.stat);
 
@@ -988,7 +989,7 @@ class AtomEnvironment {
         this.document.body.classList.add('hidden-title-bar');
       }
 
-      this.document.body.appendChild(this.workspace.getElement());
+      //this.document.body.appendChild(this.workspace.getElement());
       if (this.backgroundStylesheet) this.backgroundStylesheet.remove();
 
       let previousProjectPaths = this.project.getPaths();
@@ -1028,6 +1029,16 @@ class AtomEnvironment {
         'window:environment:start-editor-window:open-editor'
       );
       await this.openInitialEmptyEditorIfNecessary();
+      
+      const { render, unmountComponentAtNode } = require('react-dom');
+      const AppContainer = require('./components/app').default;
+      const root = document.createElement('div');
+      root.classList.add('root');
+      document.body.append(root);
+      const element = React.createElement(AppContainer);
+      render(element, root);
+      this.element = element;
+
     });
 
     const loadHistoryPromise = this.history.loadState().then(() => {
